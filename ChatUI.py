@@ -1,0 +1,53 @@
+import streamlit as st
+from streamlit_chat import message
+from streamlit.components.v1 import html
+from server import index
+#Make the chat_id presistant
+
+
+
+# uuid = 'ca49824e-34c4-457f-b817-03757af0ec49'
+# chat_id = ""
+
+
+def chatting(UUID,Chat_id ):
+    st.markdown("<h1 style='text-align: center;'>Chat placeholder</h1>", unsafe_allow_html=True)
+    uuid = UUID
+    chat_id = Chat_id
+    def on_input_change():
+        user_input = st.session_state.user_input
+        st.session_state.past.append(user_input)
+        response = index(uuid=uuid, u_input=user_input, chat_id=chat_id)
+        st.session_state[uuid] = response['chat_id']
+        st.session_state.generated.append(response)
+        st.session_state.user_input = ''
+
+    def on_btn_click():
+        del st.session_state.past[:]
+        del st.session_state.generated[:]
+
+
+    st.session_state.setdefault(
+        'past', 
+        []
+    )
+    st.session_state.setdefault(
+        'generated', 
+        []
+    )
+
+    chat_placeholder = st.empty()
+    with chat_placeholder.container():    
+        for i in range(len(st.session_state['past'])):                
+            message(st.session_state['past'][i], is_user=True, key=f"{i}_user")
+            message(
+                st.session_state['generated'][i]['message'], 
+                key=f"{i}", 
+                allow_html=True
+            )
+        st.button("Clear message", on_click=on_btn_click)
+
+
+    with st.container():
+        uinput = st.text_input("User Input:", on_change=on_input_change, key="user_input")
+
