@@ -20,8 +20,8 @@ app = Flask(__name__)
 CORS(app) 
 
 load_dotenv()
-port = int(os.getenv('FLASK_PORT'))
-flask_host = os.getenv('FLASK_HOST')
+
+
 T_API_KEY = os.getenv('Tasking_API_KEY')
 taskingai.init(api_key=T_API_KEY,host='https://tasking.fayazk.com')
 

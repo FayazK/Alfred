@@ -4,8 +4,6 @@ from server import show_records
 from streamlit_card import card
 import ChatUI
 import FileUpload
-import os
-import warnings
 
 
 UUID = ''
