@@ -44,7 +44,6 @@ def data():
     return recocrds
 
 def Home():
-
     st.markdown("<h1 style='text-align: center;'>Alfred</h1>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     recocrds = data()
@@ -92,11 +91,3 @@ elif page == 'chat':
 elif page == 'upload':
     FileUpload.file_upload()
 
-
-
-# if st.session_state.page == 'home':
-#     Home()
-# elif st.session_state.page == 'chat':
-#     ChatUI.chatting(UUID=st.session_state.UUID,Chat_id=st.session_state[st.session_state.UUID])
-# elif st.session_state.page == 'upload':
-#     FileUpload.file_upload()

@@ -2,22 +2,20 @@ import streamlit as st
 from streamlit_chat import message
 from streamlit.components.v1 import html
 from server import index
-#Make the chat_id presistant
-
-
-
-# uuid = 'ca49824e-34c4-457f-b817-03757af0ec49'
-# chat_id = ""
 
 
 def chatting(UUID,Chat_id ):
     st.markdown("<h1 style='text-align: center;'>Chat placeholder</h1>", unsafe_allow_html=True)
     uuid = UUID
     chat_id = Chat_id
+    if 'user_input' not in st.session_state and 'past' in st.session_state:
+            del st.session_state.past[:]
+            del st.session_state.generated[:]
     def on_input_change():
         user_input = st.session_state.user_input
         st.session_state.past.append(user_input)
         response = index(uuid=uuid, u_input=user_input, chat_id=chat_id)
+        response['message'] = response['message'].replace("```html", "").replace("```", "")
         st.session_state[uuid] = response['chat_id']
         st.session_state.generated.append(response)
         st.session_state.user_input = ''
@@ -25,7 +23,6 @@ def chatting(UUID,Chat_id ):
     def on_btn_click():
         del st.session_state.past[:]
         del st.session_state.generated[:]
-
 
     st.session_state.setdefault(
         'past', 

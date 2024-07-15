@@ -137,7 +137,3 @@ def index(uuid,u_input, chat_id):
         return {'message': 'Unexpected error occurred'}
 
 
-# if __name__ == '__main__':
-#     port = int(os.getenv('FLASK_PORT'))
-#     flask_host = os.getenv('FLASK_HOST')
-#     app.run(host=flask_host, port=port)
