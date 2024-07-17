@@ -6,6 +6,7 @@ import pandas as pd
 
 class database:
     path = None
+    uuid = None
     def set_path(self,path):
         database.path = path
     def get_path(self):
@@ -14,6 +15,7 @@ class database:
     def upload_data(self, assistant_id, collection_id):
         name = self.path.split('/')[-1]
         UUid = str(uuid.uuid4())
+        database.uuid = UUid
         with sql.connect("database.db") as con:
             cur = con.cursor()
 
@@ -43,6 +45,7 @@ class database:
         cur = conn.cursor()
     
         for index, row in data.iterrows():
+            uuid = database.uuid
             batt_id = row['BATT ID']
             cmpy_name = row['Company/\nProject']
             detail = row['Details']
@@ -58,6 +61,7 @@ class database:
             spaciment_id = row['Specimen ID']
             ct = row['Corr. \nAvg. CT']
             cur.execute('''INSERT INTO records (
+                        uuid,
                         BATT_ID,
                         Project,
                         Details,
@@ -73,7 +77,8 @@ class database:
                         Specimen_ID,
                         CT_index
                     ) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', (
+                        uuid,
                         batt_id,
                         cmpy_name,
                         detail,
@@ -103,10 +108,12 @@ class database:
                     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )''')
         conn.close()
+    
     def create_record_table(self):
         conn = sqlite3.connect('database.db')
         cur = conn.cursor()
         conn.execute('''CREATE TABLE IF NOT EXISTS records (
+                    uuid TEXT,
                     BATT_ID TEXT,
                     Project TEXT,
                     Details TEXT,
@@ -123,6 +130,7 @@ class database:
                     CT_index INTEGER
                 )''')
         conn.close()
+
 
 
 

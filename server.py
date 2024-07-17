@@ -43,38 +43,6 @@ def show_records():
     con.close()
     return data
 
-#This endpoint is being hit by the assistant to get the records of all the project 
-@app.route('/database/<path:name>',methods=['GET'])
-def query_database(name):
-    '''Thi is api for database it will return all the project based on name of project'''
-    data = []
-    with sql.connect("database.db") as con:
-        cur = con.cursor()
-        records = cur.execute("SELECT * FROM records WHERE Project = ?", (name,))
-        all_records = records.fetchall()
-        #inserting all the records into the database
-        for record in all_records:
-            json_record = {
-            "BATT_ID": record[0],
-            "Project": record[1],
-            "Details": record[2],
-            "MixType": record[3],
-            "Binder_PG": record[4],
-            "Binder_Content": record[5],
-            "NMAS": record[6],
-            "RAP": record[7],
-            "Fiber": record[8],
-            "Dosage": record[9],
-            "Additive": record[10],
-            "Dosage1": record[11],
-            "Specimen_ID": record[12],
-            "CT_index": record[13]
-            }
-            data.append(json_record)
-        con.commit()
-    return jsonify(data)
-
-
 def File_Upload(file_name):
     '''Handle upload file request creating assistant, inserting into the databse'''
     file = file_name
@@ -106,7 +74,7 @@ def create_assistant():
 
 def index(uuid,u_input, chat_id):
     '''main endpoing it will hadle the chat conversation with assitatn based on UUID'''
-    print('-------------chat id returned from client-------',chat_id)
+    
     try:
         u_input = u_input
         chat_id = chat_id
@@ -119,13 +87,15 @@ def index(uuid,u_input, chat_id):
             try:
                 chat = chat_creation(assistant_id=assistant_id)
                 chat_id = chat.chat_id
-                print('chat id created ==',chat_id)
             except taskingai.client.rest.ApiException as e:
                 value = record[3]
                 uuid = record[0]
                 return  {'message':"Error while while creating chat id Assistant does not exist."} # Redirect to create_assistant
                     
         if u_input:
+            u_input = f'''{u_input}
+                        uuid = {uuid} "use uuid only when accessing API/database".'''
+            print(u_input)
             response = chat_with_assitant(chat_id=chat_id, assist_id=assistant_id, u_input=u_input)
             print('chat gpt response', response.content.text)
             return {'message': response.content.text, 'uuid': uuid, 'chat_id': chat_id}

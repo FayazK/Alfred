@@ -12,12 +12,21 @@ DATABASE_API_SCHEMA = {
         }
     ],
     "paths": {
-        "/database/{name}": {
+        "/database/{uuid}/{name}": {
             "get": {
                 "description": "Get records for a specific project",
                 "operationId": "get_project_records",
                 "summary": "Fetch all records for a given project",
                 "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "required": True,
+                        "description": "The UUID of the project",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
                     {
                         "name": "name",
                         "in": "path",

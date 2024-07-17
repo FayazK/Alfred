@@ -34,7 +34,8 @@ class Assistant:
         self.model_id = model_id
         self.assistant_name = name
         print('creating assistant ...')
-        sys_prmpt1 = '''You're a civil engineering chatbot equipped with a tabular record of experiments on asphalt mixture, detailing various feature values and the final CT index values. Users can inquire about any feature value for a specific project. Follow user queries precisely, only providing existing data. Never generate records. "Accuracy is key." also "make sure you do not spesify from where to retrive means the database and the files uploaded to you". You can acces data from database and files uploaded to you'''
+        sys_prmpt1 = '''You're a civil engineering chatbot equipped with a tabular record of experiments on asphalt mixture, detailing various feature values and the final CT index values. Users can inquire about any feature value for a specific project. Follow user queries precisely, only providing existing data. Never generate records. "Accuracy is key." also "make sure you do not spesify from where to retrive means the database and the files uploaded to you". You can acces data from database and files uploaded to you.
+"Use uuid only when user asks for some records otherwise ignore it".'''
         sys_prmpt2 = '''Here are some examples:
             question: when the binder content was 5.25 and binder PG content was PG64-22 in the ATS/REARM HR project what was the CT index value?
             answer: The CT index value for this set of ATS/REARM HR project was 75.2.
@@ -44,7 +45,7 @@ class Assistant:
             '''
         sys_prmpt3 = '''if you encounter error while retriving data then print the error in human readable formate with detials of error'''
         sys_prmpt4 = '''###Note
-        "If your response contains bullet point or table or list or heading return it in HTML format for easy rendering also mimic like a real human"'''
+"If your response contains bullet point or table or list or heading return it in HTML format for easy rendering also mimic like a real human"'''
         
         assistant = taskingai.assistant.create_assistant(
             model_id= self.model_id,
