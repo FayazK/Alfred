@@ -22,7 +22,7 @@ CORS(app)
 load_dotenv()
 
 
-T_API_KEY = os.getenv('Tasking_API_KEY')
+T_API_KEY = os.getenv('TASKING_API_KEY')
 taskingai.init(api_key=T_API_KEY,host='https://tasking.fayazk.com')
 
 UPLOAD_FOLDER = 'data'

@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-embd_model_id = os.getenv('embed_model_id')
-model_id = os.getenv('model_id') 
+embd_model_id = os.getenv('EMBED_MODEL_ID')
+model_id = os.getenv('MODEL_ID')
 def create_or_fetch_assistant(path, assistant_id = None):  
     if assistant_id:
         #assistant exist only edit the assistant

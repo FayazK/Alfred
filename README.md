@@ -19,11 +19,11 @@ Setup you tasking.ai credentials which include (Tasking ai API, chat model id, e
 
 example:
 
-Tasking_API_KEY = tkxxxxxxxxxxxxxxxxxxxxxxxxxx
+TASKING_API_KEY = tkxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-model_id = Txxxxxxx
+MODEL_ID = Txxxxxxx
 
-embed_model_id =  Txxxxxxx
+EMBED_MODEL_ID = Txxxxxxx
 
 FLASK_PORT=5000
 

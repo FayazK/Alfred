@@ -13,8 +13,8 @@ from dotenv import load_dotenv
 import os
 from model.database_api_schema import DATABASE_API_SCHEMA
 load_dotenv()
-model_id = os.getenv('model_id')
-embed_model_id = os.getenv('embed_model_id')
+model_id = os.getenv('MODEL_ID')
+embed_model_id = os.getenv('EMBED_MODEL_ID')
 
 
 class Assistant:
