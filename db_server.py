@@ -9,13 +9,15 @@ app = Flask(__name__)
 CORS(app) 
 load_dotenv()
 
+@app.route('/',methods=['GET','POST'])
+def home():
+    return 'Flask server start working'
+
 #This endpoint is being hit by the assistant to get the records of all the project 
 @app.route('/database/<path:uuid>/<path:name>',methods=['GET','POST'])
 def query_database(name,uuid):
     '''Thi is api for database it will return all the project based on name of project'''
     data = []
-    print('name = ',name)
-    print('uuid = ',uuid)
     with sql.connect("database.db") as con:
         cur = con.cursor()
         records = cur.execute("SELECT * FROM records WHERE Project = ? AND uuid = ?", (name, uuid))
