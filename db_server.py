@@ -9,6 +9,10 @@ app = Flask(__name__)
 CORS(app) 
 load_dotenv()
 
+@app.route('/',methods=['GET','POST'])
+def home():
+    return 'Flask server start working'
+
 #This endpoint is being hit by the assistant to get the records of all the project 
 @app.route('/database/<path:uuid>/<path:name>',methods=['GET','POST'])
 def query_database(name,uuid):
