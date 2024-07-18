@@ -3,3 +3,4 @@ virenv
 __pycache__
 .vscode
 .DS_Store
+.idea
