@@ -30,7 +30,7 @@ FLASK_PORT=5000
 FLASK_HOST=127.0.0.1
 
 ### WSGI server for production
-# /etc/systemd/system/myapp.service
+
 
 1. create service file name.service
 
@@ -58,6 +58,7 @@ WantedBy=multi-user.target
 
 
 2. start and enable gunicorn service
+
 sudo systemctl daemon-reload
 
 sudo systemctl start myapp.service
