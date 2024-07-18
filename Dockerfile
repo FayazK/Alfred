@@ -6,8 +6,8 @@ COPY . .
 
 RUN pip3 install -r requirements.txt
 
-EXPOSE 5000 8501
+EXPOSE 7991 7881
 
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+HEALTHCHECK CMD curl --fail http://localhost:7881/_stcore/health
 
-CMD ["sh", "-c", "python db_server.py & streamlit run App.py"]
+CMD ["sh", "-c", "python db_server.py & streamlit run App.py --server.port 7881"]
