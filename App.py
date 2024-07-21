@@ -12,14 +12,14 @@ def handle_card_click(record):
     if link not in st.session_state:
         st.session_state[link] = ''
     if record["type"] == 'upload':
-        st.experimental_set_query_params(page='upload', uuid='')
+        st.experimental_set_query_params(page='upload', uuid='',replace=True)
         st.session_state.current_screen = 'upload'
         st.session_state.UUID = ''
 
     
         # st.experimental_set_query_params(page='upload')
     elif record["type"] == 'chat':
-        st.experimental_set_query_params(page='chat', uuid=record["link"])
+        st.experimental_set_query_params(page='chat', uuid=record["link"],replace=True)
         st.session_state.current_screen = 'chat'
         st.session_state.UUID = record["link"]
         st.session_state.chat_id = ''

@@ -16,6 +16,7 @@ def chatting(UUID,Chat_id ):
         st.session_state.past.append(user_input)
         response = index(uuid=uuid, u_input=user_input, chat_id=chat_id)
         response['message'] = response['message'].replace("```html", "").replace("```", "")
+        print('response by LLM recived at ChatUI ++++  ++++++ ++++',response)
         st.session_state[uuid] = response['chat_id']
         st.session_state.generated.append(response)
         st.session_state.user_input = ''

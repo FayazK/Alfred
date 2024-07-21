@@ -11,10 +11,16 @@ from dotenv import load_dotenv
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
-#X5lMGRxmL4ML018K9Kh11nC6
-def convert_excel_to_html(excel_path, html_path):
-    df = pd.read_excel(excel_path)
-    df.to_html(html_path)
+
+def convert_excel_to_md(excel_path, md_path):
+    df = pd.read_excel(excel_path,skiprows=1)
+    df = df.drop(['Voids', '% AC', 'Avg. RRI', 'Avg. SIP','Avg. Rut Depth', 'Specimen'], axis = 1)
+    df = df.dropna(subset=['Company/\nProject']).iloc[:-1,]
+
+    markdown_table = df.to_markdown(index=False)
+    with open(md_path, 'w') as f:
+        f.write(markdown_table)
+    df.to_html(md_path)
     
 app = Flask(__name__)
 CORS(app) 
@@ -49,12 +55,12 @@ def File_Upload(file_name):
     if file.name == '':
         return {"message": "No selected file",'code':'404'}
     if file:
-        convert_excel_to_html(f"./{UPLOAD_FOLDER}/{file.name}", "./data/output2.html")
-        assistant_id, collection_id = create_or_fetch_assistant(f"./{UPLOAD_FOLDER}/output2.html")
+        convert_excel_to_md(f"./{UPLOAD_FOLDER}/{file.name}", "./data/Records.md")
+        assistant_id, collection_id = create_or_fetch_assistant(f"./{UPLOAD_FOLDER}/Records.md")
         datab = database()
         datab.set_path(f"./{UPLOAD_FOLDER}/{file.name}")
         datab.upload_data(assistant_id,collection_id)
-        datab.insert_rows() #insert all the records in a file
+        datab.insert_rows()#insert all the records in a file
         return {"message": "File uploaded successfully",'code':'200', "filename": file.name}
 
 @app.route("/create_assistant",  methods=['GET','POST'])
@@ -74,10 +80,10 @@ def create_assistant():
 
 def index(uuid,u_input, chat_id):
     '''main endpoing it will hadle the chat conversation with assitatn based on UUID'''
-    
     try:
         u_input = u_input
         chat_id = chat_id
+        print('chat id resived at server --- --- --- ',chat_id)
         with sql.connect("database.db") as con:
             cur = con.cursor()
             records = cur.execute('''SELECT * FROM files WHERE uuid = ?''', (uuid,))
@@ -94,7 +100,7 @@ def index(uuid,u_input, chat_id):
                     
         if u_input:
             u_input = f'''{u_input}
-                        uuid = {uuid} "use uuid only when accessing API/database".'''
+                        uuid = {'e9526a03-b432-44b7-a9fd-1a47d660d0f7'} "use uuid only when accessing API/database".'''
             print(u_input)
             response = chat_with_assitant(chat_id=chat_id, assist_id=assistant_id, u_input=u_input)
             print('chat gpt response', response.content.text)
