@@ -94,6 +94,6 @@ elif current_screen == 'chat':
     if uuid not in st.session_state:
         st.session_state[uuid] = ''
     st.session_state.UUID = uuid
-    ChatUI.chatting(UUID=st.session_state.UUID, Chat_id=st.session_state[st.session_state.UUID])
+    ChatUI.chatting(UUID=st.session_state.UUID, Chat_id=st.session_state[uuid])
 elif current_screen == 'upload':
     FileUpload.file_upload()

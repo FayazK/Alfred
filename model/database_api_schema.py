@@ -4,7 +4,7 @@ DATABASE_API_SCHEMA = {
     "info": {
         "title": "Local Database API",
         "version": "1.0.0",
-        "description": "API for fetching project information from a database"
+        "description": "API for fetching information from a database"
     },
     "servers": [
         {
@@ -12,11 +12,11 @@ DATABASE_API_SCHEMA = {
         }
     ],
     "paths": {
-        "/database/{uuid}/{name}": {
+        "/database/{uuid}/{query}": {
             "get": {
-                "description": "Get records for a specific project",
-                "operationId": "get_project_records",
-                "summary": "Fetch all records for a given project",
+                "description": "Get records from database",
+                "operationId": "get_records",
+                "summary": "Fetch all records for the query",
                 "parameters": [
                     {
                         "name": "uuid",
@@ -28,10 +28,10 @@ DATABASE_API_SCHEMA = {
                         }
                     },
                     {
-                        "name": "name",
+                        "name": "query",
                         "in": "path",
                         "required": True,
-                        "description": "The name of the project",
+                        "description": "only and exact asked question with no details.",
                         "schema": {
                             "type": "string"
                         }
@@ -39,58 +39,23 @@ DATABASE_API_SCHEMA = {
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of records for the specified project",
+                        "description": "A response from the database",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "BATT_ID": {
-                                                "type": "integer"
-                                            },
-                                            "Project": {
-                                                "type": "string"
-                                            },
-                                            "Details": {
-                                                "type": "string"
-                                            },
-                                            "MixType": {
-                                                "type": "string"
-                                            },
-                                            "Binder_PG": {
-                                                "type": "string"
-                                            },
-                                            "Binder_Content": {
-                                                "type": "number"
-                                            },
-                                            "NMAS": {
-                                                "type": "string"
-                                            },
-                                            "RAP": {
-                                                "type": "number"
-                                            },
-                                            "Fiber": {
-                                                "type": "string"
-                                            },
-                                            "Dosage": {
-                                                "type": "number"
-                                            },
-                                            "Additive": {
-                                                "type": "string"
-                                            },
-                                            "Dosage1": {
-                                                "type": "number"
-                                            },
-                                            "Specimen_ID": {
-                                                "type": "string"
-                                            },
-                                            "CT_index": {
-                                                "type": "number"
-                                            }
-                                        }
-                                    }
+                                    "oneOf": [
+                                                {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "additionalProperties": True
+                                                }
+                                                },
+                                                {
+                                                "type": "object",
+                                                "additionalProperties": True
+                                                }
+                                            ]
                                 }
                             }
                         }

@@ -96,7 +96,7 @@ def index(uuid,u_input, chat_id):
             except taskingai.client.rest.ApiException as e:
                 value = record[3]
                 uuid = record[0]
-                return  {'message':"Error while while creating chat id Assistant does not exist."} # Redirect to create_assistant
+                return  {'message':"Error while while creating, Assistant does not exist.",'uuid': uuid,'chat_id': ''} # Redirect to create_assistant
                     
         if u_input:
             u_input = f'''{u_input}
@@ -107,9 +107,9 @@ def index(uuid,u_input, chat_id):
             return {'message': response.content.text, 'uuid': uuid, 'chat_id': chat_id}
             
         else:
-            return {'message': 'No message provided'}
+            return {'message': 'No message provided','uuid': uuid,'chat_id': ''}
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
-        return {'message': 'Unexpected error occurred'}
+        return {'message': 'Unexpected error occurred','uuid': uuid,'chat_id': ''}
 
 
