@@ -83,7 +83,7 @@ def index(uuid,u_input, chat_id):
     try:
         u_input = u_input
         chat_id = chat_id
-        print('chat id resived at server --- --- --- ',chat_id)
+       
         with sql.connect("database.db") as con:
             cur = con.cursor()
             records = cur.execute('''SELECT * FROM files WHERE uuid = ?''', (uuid,))
@@ -100,7 +100,7 @@ def index(uuid,u_input, chat_id):
                     
         if u_input:
             u_input = f'''{u_input}
-                        uuid = {'e9526a03-b432-44b7-a9fd-1a47d660d0f7'} "use uuid only when accessing API/database".'''
+                        uuid = {uuid} "use uuid only when accessing API/database".'''
             print(u_input)
             response = chat_with_assitant(chat_id=chat_id, assist_id=assistant_id, u_input=u_input)
             print('chat gpt response', response.content.text)

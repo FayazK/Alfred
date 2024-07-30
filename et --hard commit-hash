@@ -1,0 +1,108 @@
+[33mcommit 1acffacd75c6a2ce322a68515e03fab092085dfb[m[33m ([m[1;36mHEAD -> [m[1;32mlive[m[33m, [m[1;31morigin/live[m[33m)[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Mon Jul 22 12:20:36 2024 +0500
+
+    adding to the database
+
+[33mcommit 891ae59cadd6f86050df9580ce1b9ed70544f645[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Sun Jul 21 12:36:33 2024 +0500
+
+    adding kb and prompting
+
+[33mcommit 80b9428a6904d54c33df596e26cada8d4546ddf7[m
+Author: Fayaz K <info@fayazk.com>
+Date:   Thu Jul 18 16:38:23 2024 +0500
+
+    🚀 (Dockerfile): change CMD to use gunicorn for running the server with 4 workers
+
+[33mcommit 18d6855c7065973a3975a44f1783e5cc7a7639d0[m
+Author: Fayaz K <info@fayazk.com>
+Date:   Thu Jul 18 16:34:37 2024 +0500
+
+    🔧 (gitignore): add .idea to ignore JetBrains IDE project files
+
+[33mcommit 0932baf9b7a541ba2e3ff717cc81bc0de0f5d566[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Thu Jul 18 16:10:09 2024 +0500
+
+    removing the sessions tate logic
+
+[33mcommit 33101af0dc2aacadc848643f16091377158cfb1c[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Thu Jul 18 13:54:04 2024 +0500
+
+    adding to wsgi server configurations
+
+[33mcommit e18b59f8f6bd74475f51924166c50f6919c0dc78[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Thu Jul 18 13:51:38 2024 +0500
+
+    adding to wsgi server configuration
+
+[33mcommit d4dfdabbde625da65d63961c1edb557ba4da1903[m
+Author: Fayaz K <info@fayazk.com>
+Date:   Thu Jul 18 11:52:49 2024 +0500
+
+    🔧 (gitignore): add common editor, OS, and Python cache files to .gitignore
+    🔧 (Dockerfile): change exposed ports and update healthcheck URL
+
+[33mcommit 3b0cd13de7f54ede7eb75bb4e98cd437a41cb383[m
+Author: Fayaz K <info@fayazk.com>
+Date:   Thu Jul 18 11:30:35 2024 +0500
+
+    ✨ (Dockerfile): add Dockerfile to containerize the application
+
+[33mcommit 4ef8dbcacb6201da12790e32e28275202800dde6[m
+Author: Fayaz K <info@fayazk.com>
+Date:   Thu Jul 18 11:09:49 2024 +0500
+
+    add enhancements
+
+[33mcommit 8204141474350da9d9b52a70d8680de6d9961ccf[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Wed Jul 17 11:31:54 2024 +0500
+
+    adding changes to the alfred
+
+[33mcommit 88799483dd9349006839ba6daae5d91b77bbd2ec[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Mon Jul 15 12:23:31 2024 +0500
+
+    cleaning up the repo
+
+[33mcommit 22823a80fa0d1468d71035db0d04b4bf1cd8612c[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Mon Jul 15 12:16:21 2024 +0500
+
+    changes to database
+
+[33mcommit 8b9a2f4e5559409e1194f0aebc91d3fbe6d1b42c[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Mon Jul 15 11:52:40 2024 +0500
+
+    remving the last bugs
+
+[33mcommit bc333064239e870075673ddbadfe037ffa8286be[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Mon Jul 15 08:17:08 2024 +0500
+
+    adding changes
+
+[33mcommit 008e1f22f6c3e5e8db3d083f0f36ac28f5f922f3[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Sun Jul 14 21:28:13 2024 +0500
+
+    adding Readme.MD
+
+[33mcommit aa9c9c969ed6ff6fb15204439328933cf5a1e396[m
+Author: IshaqKHATTAK <mi5315562@gmail.com>
+Date:   Sun Jul 14 21:02:07 2024 +0500
+
+    uploading the app
+
+[33mcommit b9679a7f950cf8a374d592232455537dd6ebf92b[m
+Author: Muhammad Ishaq <118132901+IshaqKHATTAK@users.noreply.github.com>
+Date:   Sun Jul 14 20:54:11 2024 +0500
+
+    Initial commit
